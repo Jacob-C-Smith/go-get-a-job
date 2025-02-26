@@ -1,0 +1,12 @@
+[
+    {
+        "name" : "Alan Turing",
+        "position" : "Computer Scientist",
+        "email" : "al@nturi.ng"
+    },
+    {
+        "name" : "John McCarthy",
+        "position" : "Computer Scientist",
+        "email" : "jmccarthy@mit.edu"
+    }
+]
