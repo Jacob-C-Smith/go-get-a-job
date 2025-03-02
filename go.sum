@@ -1,0 +1,4 @@
+github.com/alewtschuk/dsutils v0.0.2 h1:iuZtSxf+fewh3HZGlUt3SqAZxm3ItAF5DwFji4lQCOA=
+github.com/alewtschuk/dsutils v0.0.2/go.mod h1:g3r/W3Oo29fV5j9MtAzN8NWg0dzszfd8Tg1vUgoVkcA=
+github.com/alewtschuk/pfmt v0.0.0-20250222224735-8483e19c9953 h1:3n3XCMYrMA3ObO77ihZo3UsJSQyRMJcO2srX4NnrTGc=
+github.com/alewtschuk/pfmt v0.0.0-20250222224735-8483e19c9953/go.mod h1:0ORfACNyc7eNAX2eRKOMZuW6kKlJnEsU/7K9DxTLUog=

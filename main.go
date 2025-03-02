@@ -1,10 +1,13 @@
 package main
 
 import (
+	"bytes"
 	"encoding/json"
 	"io"
 	"os"
 	"text/template"
+
+	"github.com/alewtschuk/pfmt"
 )
 
 type Project struct {
@@ -61,9 +64,20 @@ func parseReferences() (references []Reference) {
 	return
 }
 
+func fOut(fbuf bytes.Buffer) {
+	file, err := os.Create("out.html")
+	CheckErr(err)
+	defer file.Close()
+
+	_, err = fbuf.WriteTo(file)
+	CheckErr(err)
+	pfmt.Printcln("Resume written to out.html!", 2)
+}
+
 func main() {
+	var buf bytes.Buffer
 	t, _ := template.ParseFiles("template.tmpl")
-	t.Execute(os.Stdout, struct {
+	t.Execute(&buf, struct {
 		Projects   []Project
 		Jobs       []Job
 		References []Reference
@@ -72,4 +86,5 @@ func main() {
 		Jobs:       parseJobs(),
 		References: parseReferences(),
 	})
+	fOut(buf)
 }
