@@ -2,39 +2,47 @@
 <html>
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-    <link rel="stylesheet" href="template.css">
-    <title>Jacob Smith</title>
+    <link rel="stylesheet" href="/static/template.css">
+    <title>{{.Name}}</title>
 </head>
     <body>
         <header>
-            <h1>Jacob Smith</h1>
+            <h1>{{.Name}}</h1>
             <h2>Software Engineer</h2>
             <address>
-                <a href="tel:+12085555555">+1 (208) 555-5555<br>
-                <a href="mailto:notreallyme@gmail.com">notreallyme@gmail.com</a><br>
-                <a href="https://www.linkedin.com/in/jacob-c-smith-id/">LinkedIn</a><br>
-                <a href="https://www.github.com/Jacob-C-Smith">GitHub</a><br>
+                <a href="">{{.Telephone}}<br>
+                <a href="mailto:{{.Email}}">{{.Email}}</a><br>
+                <a href="https://www.linkedin.com/in/{{.LinkedIn}}/">LinkedIn</a><br>
+                <a href="https://www.github.com/{{.GitHub}}">GitHub</a><br>
             </address>
         </header>
         <aside>
-            <img src="headshot.png">
+            <img src="/static/headshot.jpeg">
             <section>
                 <h2>Skills</h2>
                 <ul>
-                    <li>Maximizing shareholder value</li>
-                    <li>Working for defense contractors</li>
-                    <li>Increasing team productivity... by force!</li>
+                    {{ range .Skills }}
+                        <li>{{.}}</li>
+                    {{end}}
                 </ul>
             </section>
             <section>
                 <h2>Education</h2>
-                
                 <dl>
-                    <dt>You Who University</dt>
+                    <dt>Boise State University</dt>
                     <dd>Bachelor of Science in Computer Science</dd>
                 </dl>  
-            </section>
 
+                <h2>Selected Coursework</h2>
+                <dl>
+                    <dt>Distributed Systems</dt>
+                    <dt>Operating Systems</dt>
+                    <dt>Object Oriented Design Patterns</dt>
+                    <dt>Computer Graphics</dt>
+                </dl>  
+            </section>
+            
+            <!--
             <section>
                 <h2>Languages</h2>
                 
@@ -46,7 +54,9 @@
                     <dd>Intermediate Proficiency</dd>
                 </dl>
             </section>
+            -->
 
+            <!--
             <section>
                 <h2>Interests</h2>
                 
@@ -54,25 +64,18 @@
                     <li>Programming (duh!)</li>
                 </ul>  
             </section>
+            -->
         </aside>
         <main>
-            <article>
-                <h2>Profile</h2>
-                <hr>
-                <p>
-                    Innovative and highly experienced Software Engineer with a deep passion for low-level systems programming, parallel computing, and high-performance software design.
-                    Adept at building efficient abstractions that optimize computation, synchronization, and memory management.<br><br> - What ChatGPT thinks my profile section should say
-                </p>
-            </article>
             <article>
                 <h2>Work Experience</h2>
                 <hr>
                 {{ range .Jobs }}
                     <section class="jobs">
                         <h3>
-                            {{ .Title }} -
+                            {{ .Title }} at {{ .Company }}</i> -
                         </h3>
-                        <p>{{ .Start }} - {{ .End }}</p>
+                        <p><i>{{ .Start }} - {{ .End }}</i></p>
                         <ul class="job_bullet">
                             {{ range .Points }}
                             <li>{{.}}</li>
@@ -86,7 +89,6 @@
                 <hr>
                 {{ range .Projects }}
                     <section class="project">
-                        <img src="https://icons.g10.app/{{ .Name }}.png">
                         <h3>
                             <a href="https://github.com/Jacob-C-Smith/{{ .Name }}">{{ .Name }}</a>
                         </h3>

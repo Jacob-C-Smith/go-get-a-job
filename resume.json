@@ -1,0 +1,92 @@
+{
+    "name" : "Jacob Smith",
+    "telephone" : "+1 (208) 949-9665",
+    "email" : "jacobsmithsinbox@gmail.com",
+    "linkedin" : "jacob-c-smith-id",
+    "github" : "Jacob-C-Smith",
+    "jobs" : 
+    [
+        {
+            "title" : "Software Development Engineer Intern",
+            "company": "ShipBob",
+            "start" : "May 2025",
+            "end" : "Aug 2025",
+            "points" : 
+            [ 
+                "Built a bulk update tool saving my team over 60 hours anually.",
+                "Reduced operational overhead by preventing ~64 support tickets annually",
+                "Implemented full audit logging for operational site closure updates."
+            ]
+        },
+        {
+            "title" : "Software Engineer",
+            "company": "YouBound",
+            "start" : "Aug 2025",
+            "end" : "Jan 2026",
+            "points" : 
+            [ 
+                "Created a clean architecture from scratch and aligned my team around it.",
+                "Built an Identity and Access Management server with OAuth integration."
+            ]
+        },
+        {
+            "title" : "Teaching Assistant (CS)",
+            "company" : "Boise State University",
+            "start" : "Jan 2024",
+            "end" : "May 2026",
+            "points" : [ ]
+        },
+        {
+            "title" : "Teaching Assistant (Microprocessors)",
+            "company" : "Boise State University",
+            "start" : "Jan 2025",
+            "end" : "May 2026",
+            "points" : [ ]
+        },
+        {
+            "title" : "Undergraduate Researcher",
+            "company" : "Boise State University",
+            "start" : "Oct 2023",
+            "end" : "May 2025",
+            "points" :  
+            [ 
+                "Built a geospatial SPA to map over a decade of litigation data from the DOI.",
+                "Evolved data models to meet expanding stakeholder requirements.",
+                "Presented my findings at Boise State's Undergraduate Research Showcase."
+            ]
+        }
+    ],
+    "projects" : 
+    [
+        {
+            "name" : "gsdk",
+            "description" : "A modular C SDK with tons of generic data structures and highly flexable reflection.",
+            "url" : "https://sdk.g10.app"
+        },
+        {
+            "name" : "fit",
+            "description" : "Workout tracking web app built with Go and designed for minimal user interaction.",
+            "url" : "https://fit.g10.app"
+        }
+    ],
+    "references" : 
+    [
+        {
+            "name" : "Joshua Meyers",
+            "position" : "Senior Engineering Manager, ShipBob",
+            "email" : "jmeyers@shipbob.com"
+        },
+        {
+            "name" : "Dr. Amit Jain",
+            "position" : "Professor, Boise State University",
+            "email" : "ajain@boisestate.edu"
+        }
+    ],
+    "skills" :
+    [
+        "C, Go, Java, Bash, Python",
+        ".NET 8, Vue.js, HTMX",
+        "Git, Docker, GDB, Make",
+        "Embedded Systems, Concurrency, Multithreading"
+    ]
+}

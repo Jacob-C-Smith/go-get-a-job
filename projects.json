@@ -1,26 +1,12 @@
 [
     {
-        "name" : "socket",
-        "description" : "Cross platform network connections"
+        "name" : "gsdk",
+        "description" : "A modular C SDK",
+        "url" : "https://sdk.g10.app"
     },
     {
-        "name" : "array",
-        "description" : "Mutable, iterable, integer indexed collection"
-    },
-    {
-        "name" : "dict",
-        "description" : "Mutable, string indexed collection"
-    },
-    {
-        "name" : "json",
-        "description" : "Parse and serialize JSON values"
-    },
-    {
-        "name" : "node",
-        "description" : "Specialized graph; Model generic directed acyclic depenencies"
-    },
-    {
-        "name" : "g10",
-        "description" : "A 3D game engine"
+        "name" : "fit",
+        "description" : "Plan and track workouts with minimal interaction",
+        "url" : "https://fit.g10.app"
     }
 ]

@@ -1,25 +1,28 @@
+// package declaration
 package main
 
+// imports
 import (
-	"bytes"
 	"encoding/json"
-	"io"
+	"fmt"
+	"html/template"
+	"net/http"
 	"os"
-	"text/template"
-
-	"github.com/alewtschuk/pfmt"
+	"time"
 )
 
+// structure definitions
 type Project struct {
 	Name        string `json:"name"`
 	Description string `json:"description"`
 }
 
 type Job struct {
-	Title  string   `json:"title"`
-	Start  string   `json:"start"`
-	End    string   `json:"end"`
-	Points []string `json:"points"`
+	Title   string   `json:"title"`
+	Company string   `json:"company"`
+	Start   string   `json:"start"`
+	End     string   `json:"end"`
+	Points  []string `json:"points"`
 }
 
 type Reference struct {
@@ -28,63 +31,81 @@ type Reference struct {
 	Email    string `json:"email"`
 }
 
-func CheckErr(e error) {
-	if e != nil {
-		panic(e)
-	}
+type Resume struct {
+	Name       string      `json:"name"`
+	Telephone  string      `json:"telephone"`
+	Email      string      `json:"email"`
+	LinkedIn   string      `json:"linkedin"`
+	GitHub     string      `json:"github"`
+	Projects   []Project   `json:"projects"`
+	Jobs       []Job       `json:"jobs"`
+	References []Reference `json:"references"`
+	Skills     []string    `json:"skills"`
 }
 
-func parseProjects() (projects []Project) {
-	file, err := os.Open("projects.json")
-	CheckErr(err)
-	data, err := io.ReadAll(file)
-	CheckErr(err)
-	CheckErr(json.Unmarshal(data, &projects))
-	file.Close()
-	return
+// data
+var t *template.Template = nil
+var resume Resume = Resume{}
+
+// function definitions
+func init() {
+
+	// periodically reload template
+	go func() {
+		for {
+			// initialized data
+			var err error = nil
+			var data []byte = nil
+
+			// load the resume json
+			data, err = os.ReadFile("resume.json")
+			if err != nil {
+
+				// logs
+				fmt.Fprintf(os.Stderr, "Error: %s\n", err.Error())
+
+				// error
+				os.Exit(1)
+			}
+
+			// parse the json
+			err = json.Unmarshal(data, &resume)
+			if err != nil {
+
+				// logs
+				fmt.Fprintf(os.Stderr, "Error: %s\n", err.Error())
+
+				// error
+				os.Exit(1)
+			}
+
+			// log
+			fmt.Printf("Refreshed templates\n")
+
+			// parse the templates
+			t = template.Must(template.ParseGlob("*.html"))
+
+			// wait
+			time.Sleep(1 * time.Second)
+		}
+	}()
 }
 
-func parseJobs() (jobs []Job) {
-	file, err := os.Open("jobs.json")
-	CheckErr(err)
-	data, err := io.ReadAll(file)
-	CheckErr(err)
-	CheckErr(json.Unmarshal(data, &jobs))
-	file.Close()
-	return
+func index(w http.ResponseWriter, r *http.Request) {
+
+	// respond
+	t.ExecuteTemplate(w, "template.html", resume)
 }
 
-func parseReferences() (references []Reference) {
-	file, err := os.Open("references.json")
-	CheckErr(err)
-	data, err := io.ReadAll(file)
-	CheckErr(err)
-	CheckErr(json.Unmarshal(data, &references))
-	file.Close()
-	return
-}
-
-func fOut(fbuf bytes.Buffer) {
-	file, err := os.Create("out.html")
-	CheckErr(err)
-	defer file.Close()
-
-	_, err = fbuf.WriteTo(file)
-	CheckErr(err)
-	pfmt.Printcln("Resume written to out.html!", 2)
-}
-
+// entry point
 func main() {
-	var buf bytes.Buffer
-	t, _ := template.ParseFiles("template.tmpl")
-	t.Execute(&buf, struct {
-		Projects   []Project
-		Jobs       []Job
-		References []Reference
-	}{
-		Projects:   parseProjects(),
-		Jobs:       parseJobs(),
-		References: parseReferences(),
-	})
-	fOut(buf)
+
+	// serve static files
+	http.Handle("/static/", http.StripPrefix("/static/", http.FileServer(http.Dir("static"))))
+
+	// routes
+	http.HandleFunc("/", index)
+
+	// listen and serve
+	http.ListenAndServe(":8080", nil)
 }

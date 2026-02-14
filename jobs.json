@@ -1,22 +1,26 @@
 [
     {
-        "title" : "Poop scooper",
-        "start" : "Spring 2025",
-        "end" : "present",
-        "points" : 
-        [
-            "Picked up turds",
-            "Put turds in bag"
-        ]
+        "title" : "Software Development Engineer Intern",
+        "start" : "May 2025",
+        "end" : "Aug 2025",
+        "points" :  [ "" ]
     },
     {
-        "title" : "Trench digger",
-        "start" : "Spring 2024",
+        "title" : "Teaching Assistant (CS)",
+        "start" : "Jan 2024",
         "end" : "present",
-        "points" :
-        [
-            "Dug long trenches",
-            "Some were even 12 feet deep"
-        ]
+        "points" :  [ "" ]
+    },
+    {
+        "title" : "Teaching Assistant (ECE)",
+        "start" : "Jan 2025",
+        "end" : "present",
+        "points" :  [ "" ]
+    },
+    {
+        "title" : "Undergraduate Researcher",
+        "start" : "Oct 2023",
+        "end" : "May 2025",
+        "points" :  [ "" ]
     }
 ]
